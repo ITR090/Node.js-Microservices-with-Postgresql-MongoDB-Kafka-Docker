@@ -1,0 +1,3 @@
+From postgres:15-alpine
+EXPOSE 5432
+COPY restaurant.sql /docker-entrypoint-initdb.d/

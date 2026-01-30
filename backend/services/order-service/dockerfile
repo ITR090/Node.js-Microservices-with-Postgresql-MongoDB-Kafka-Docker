@@ -1,0 +1,20 @@
+# Based image
+FROM node:20-alpine
+
+# Set working dir
+WORKDIR /order-server
+
+# Copy package*.json file first
+COPY ./package.json ./package-lock.json ./
+
+# install pakages
+RUN npm install
+
+# copy the rest of application
+COPY ./ ./
+
+# Expose the port your server will listen on
+EXPOSE 8083
+
+# command to start our application
+CMD [ "node" , "index.js"]

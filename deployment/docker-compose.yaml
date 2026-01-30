@@ -1,0 +1,83 @@
+# version: '3.8'
+services:
+  #Databases
+  postgresql-db:
+   container_name: postgresql-db
+   build: ../backend/services/restaurant-service/database 
+   volumes:
+    - postgres_data:/var/lib/postgresql/data
+   ports:
+    - "5432:5432"
+   env_file: 
+    - ../backend/services/restaurant-service/env/.env.production
+   healthcheck:
+    test: ["CMD-SHELL", "pg_isready -U postgres"]
+    interval: 30s
+    timeout: 60s
+    retries: 5
+  
+  mongo-db:
+   container_name: mongo-db
+   image: mongo:latest
+   ports:
+      - "27017:27017"
+   volumes:
+      - mongo-data:/data/db 
+   env_file:
+    - ../backend/services/cart-service/env/.env.production
+    - ../backend/services/payment-service/env/.env.production
+  
+  #Services
+  api-gateway:
+   container_name: api-gateway
+   build: ../backend/services/api-gateway
+   ports: 
+    - 4000:4000 
+   env_file:
+    - ../backend/services/api-gateway/env/.env.production 
+
+  restaurant-service:
+   container_name: restaurant-service
+   build: ../backend/services/restaurant-service    
+   ports: 
+    - 8001:8001
+   env_file: 
+    - ../backend/services/restaurant-service/env/.env.production   
+   depends_on:
+    postgresql-db: 
+     condition: service_healthy
+
+  cart-service:
+   container_name: cart-service
+   build: ../backend/services/cart-service
+   ports: 
+    - 8002:8002
+   env_file:
+    - ../backend/services/cart-service/env/.env.production
+   depends_on: 
+    - mongo-db 
+  
+  payment-service:
+   container_name: payment-service
+   build: ../backend/services/payment-service
+   ports: 
+    - 8003:8003 
+   env_file: 
+    - ../backend/services/payment-service/env/.env.production 
+   depends_on: 
+    - mongo-db
+  
+  web-server:
+   container_name: web-server
+   build: ../frontend/
+   ports: 
+    - 8080:8080
+   depends_on:
+    - api-gateway
+    - restaurant-service
+    - payment-service
+    - cart-service
+
+volumes:
+ postgres_data:
+ mongo-data:
