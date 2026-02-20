@@ -1,0 +1,9 @@
+frontend/node_modules
+backend/services/api-gateway/node_modules
+backend/services/cart-service/node_modules
+backend/services/email-service/node_modules
+backend/services/kafka-service/node_modules
+backend/services/log-service/node_modules
+backend/services/order-service/node_modules
+backend/services/payment-service/node_modules
+backend/services/restaurant-service/node_modules

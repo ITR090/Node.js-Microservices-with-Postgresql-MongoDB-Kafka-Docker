@@ -5,16 +5,14 @@ FROM node:20-alpine
 WORKDIR /order-server
 
 # Copy package*.json file first
-COPY ./package.json ./package-lock.json ./
+COPY ./package.json  ./
+COPY ./src .env ./env/.env.production ./
 
 # install pakages
 RUN npm install
 
-# copy the rest of application
-COPY ./ ./
-
 # Expose the port your server will listen on
-EXPOSE 8083
+EXPOSE 7073
 
 # command to start our application
 CMD [ "node" , "index.js"]

@@ -39,7 +39,7 @@ COPY ./nginx/nginx.conf ./etc/nginx/nginx.conf
 
 # Cloud Run expects the service to listen on the port specified by the $PORT environment variable.
 # Although Nginx is serving, we'll expose 80, but configure Nginx in nginx.conf to use $PORT.
-EXPOSE 8080
+EXPOSE 9090
 
 # Command to start Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]

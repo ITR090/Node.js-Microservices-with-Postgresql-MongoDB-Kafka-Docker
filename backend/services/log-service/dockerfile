@@ -2,19 +2,17 @@
 FROM node:20-alpine
 
 # Set working dir
-WORKDIR /payment-server
+WORKDIR /log-server
 
 # Copy package*.json file first
 COPY ./package.json  ./
-
-# copy the rest of application
 COPY ./src .env ./env/.env.production ./
 
 # install pakages
 RUN npm install
 
 # Expose the port your server will listen on
-EXPOSE 7072
+EXPOSE 7074
 
 # command to start our application
 CMD [ "node" , "index.js"]

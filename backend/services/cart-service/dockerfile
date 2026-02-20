@@ -14,7 +14,7 @@ COPY ./src .env ./env/.env.production ./
 RUN npm install
 
 # Expose the port your server will listen on
-EXPOSE 8081
+EXPOSE 7074
 
 # command to start our application
 CMD [ "node" , "index.js"]
