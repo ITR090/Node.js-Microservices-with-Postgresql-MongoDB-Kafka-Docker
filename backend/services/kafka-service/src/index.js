@@ -1,4 +1,5 @@
-const { Kafka } = require('kafkajs')
+// const { Kafka } = require('kafkajs')
+import {Kafka} from 'kafkajs'
 
 const kafka = new Kafka({
   clientId: "kafka-service",
@@ -6,10 +7,10 @@ const kafka = new Kafka({
 });
 
 const admin = kafka.admin();
+ await admin.connect();
 
 const createTopics = async () => {
-  try {
-    await admin.connect();
+  try {  
     await admin.createTopics({
       topics: [
         { 

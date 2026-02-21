@@ -1,0 +1,15 @@
+# Based image
+FROM node:20-alpine
+
+# Set working dir
+WORKDIR /kafka-server
+
+# Copy package*.json 
+COPY ./package.json ./
+COPY ./src ./
+
+# install pakages
+RUN npm install
+
+# command to start application
+CMD [ "node" , "index.js"]

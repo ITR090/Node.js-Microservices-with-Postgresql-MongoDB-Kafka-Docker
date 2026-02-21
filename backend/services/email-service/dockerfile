@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # Set working dir
-WORKDIR /log-server
+WORKDIR /email-server
 
 # Copy package*.json file first
 COPY ./package.json  ./
@@ -12,7 +12,7 @@ COPY ./src .env ./env/.env.production ./
 RUN npm install
 
 # Expose the port your server will listen on
-EXPOSE 7075
+EXPOSE 7076
 
 # command to start our application
 CMD [ "node" , "index.js"]
