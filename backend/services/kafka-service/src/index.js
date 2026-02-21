@@ -7,10 +7,11 @@ const kafka = new Kafka({
 });
 
 const admin = kafka.admin();
- await admin.connect();
+
 
 const createTopics = async () => {
   try {  
+    await admin.connect();
     await admin.createTopics({
       topics: [
         { 
