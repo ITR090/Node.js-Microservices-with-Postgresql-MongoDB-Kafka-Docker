@@ -9,7 +9,7 @@
 Placeholder for architecture diagram
 
 
-# Core Services
+### Core Services
 
 | Service Name       | Port | Description                   |
 | ------------------ | ---- | ----------------------------- |
@@ -22,7 +22,7 @@ Placeholder for architecture diagram
 | Log Service        | 7076 | Centralized logging           |
 
 
-# Supporting Services
+### Supporting Services
 | Service Name | Port | Description                |
 | ------------ | ---- | -------------------------- |
 | Redis        | 6379 | Caching              |
@@ -30,14 +30,14 @@ Placeholder for architecture diagram
 | Kafka UI     | 8080 | Kafka monitoring interface |
 
 
-# 🛠️ Tech Stack
+### 🛠️ Tech Stack
 - Node.js
 - Express.js
 - Redis
 - Kafka
 - Microservices Architecture
 
-# 🚦 Getting Started
+### 🚦 Getting Started
 - Clone the repository
 - Install dependencies for each service
 - Start docker-compose.yml file
