@@ -23,3 +23,4 @@ app.use("/api/restaurants", require("./routes/restaurant.routes"));
 app.listen(process.env.PORT, () =>
   console.log(`Restaurant Service running on ${process.env.PORT}`)
 );
+

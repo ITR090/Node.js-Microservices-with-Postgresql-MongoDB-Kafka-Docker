@@ -12,4 +12,4 @@ COPY ./src ./
 RUN npm install
 
 # command to start application
-CMD [ "node" , "index.js"]
+CMD [ "npm" , "run" , "dev" ]

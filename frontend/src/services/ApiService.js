@@ -107,10 +107,10 @@ export const clearCart = async () => {
 
 
 // Payment APIs
-export const create_payment = async (payment) => {
+export const create_payment = async (payment_data) => {
 
     try {
-        const response = await api.post("/payment/create", payment)
+        const response = await api.post("/payment/create",  payment_data)
         if (response.status == 201) {
             const clearCart_response = await clearCart()
             if (clearCart_response.code == 200) {
@@ -128,5 +128,20 @@ export const create_payment = async (payment) => {
     }
 }
 
+// Orders APIs
+export const getOrders = async () => {
+    try {
+        const response = await api.get('orders/get-orders');
+        console.log(response)     
+        if (response.status == 200) {
+            return response.data;
+        }
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        return {    
+            error: error.message
+        }
+    }   
+}
 
 

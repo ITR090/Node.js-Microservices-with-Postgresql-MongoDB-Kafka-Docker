@@ -25,7 +25,7 @@ const { Client } = require('pg');
 async function connectDB() {
   try {
     await client.connect();
-    console.log("Connected to PostgreSQL");
+    console.log("Connected to PostgreSQL database");
   } catch (err) {
     console.error("PostgreSQL connection failed", err);
     process.exit(1);

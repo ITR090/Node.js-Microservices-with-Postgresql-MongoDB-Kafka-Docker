@@ -27,6 +27,7 @@ Placeholder for architecture diagram
 | ------------ | ---- | -------------------------- |
 | Redis        | 6379 | Caching              |
 | Redis UI     | 8001 | Redis management interface |
+| Kafka        | 9092 | Kafka monitoring interface |
 | Kafka UI     | 8080 | Kafka monitoring interface |
 
 

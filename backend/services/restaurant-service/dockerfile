@@ -17,4 +17,4 @@ RUN npm install
 EXPOSE 7071
 
 # command to start our application
-CMD [ "node" , "index.js"]
+CMD [ "npm" , "run" , "dev" ]

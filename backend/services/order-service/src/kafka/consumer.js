@@ -1,5 +1,7 @@
 const { Kafka } = require('kafkajs')
-const Order = require('../models/Order.js')
+// const Order = require('../models/Order.js')
+const {createOrder} = require('../controllers/order.controller')
+
 
  const kafka = new Kafka({
         clientId: "order-service",
@@ -19,18 +21,9 @@ try {
          try {
             const messageValue = JSON.parse(message.value.toString())
             console.log(`Received message from topic ${topic}:`, messageValue);
-            const response = await Order.create({
-                id: messageValue.id,
-                topicMessage: JSON.stringify(messageValue),
-                orderStatus: "order placed"
-            })
-            console.log("Order created successfully:", response);
-            //const parsedMessage = JSON.parse(messageValue)
-            // await Order.create({
-            //     id: parsedMessage.id,
-            //     topicMessage: parsedMessage,
-            //     orderStatus: "order placed"
-            // })
+            
+            await createOrder(messageValue)
+            
          } catch (error) {
             console.error("Error creating order:", error);
          }
@@ -39,7 +32,6 @@ try {
 } catch (error) {
     console.error("Error in Kafka consumer", error);
 }
-
 
 }
 

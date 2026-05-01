@@ -13,6 +13,7 @@ const Navbar = () => {
                 <Link to='/' className="btn btn-ghost text-xl">Food</Link>
             </div>
             <div className="flex-none">
+                <Link to='/login' className='btn btn-ghost'>Login</Link>
                 <Link to='/cart' className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                         <div  className="indicator">
@@ -32,11 +33,14 @@ const Navbar = () => {
                     <ul
                         tabIndex="-1"
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li>
+                        {/* <li>
                             <a className="justify-between">
                                 Profile
                                 <span className="badge">New</span>
                             </a>
+                        </li> */}
+                        <li>
+                             <Link to='/myorders'>My Orders</Link>
                         </li>
                         <li><a>Logout</a></li>
                     </ul>

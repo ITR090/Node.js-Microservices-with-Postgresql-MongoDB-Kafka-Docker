@@ -15,4 +15,4 @@ RUN npm install
 EXPOSE 7076
 
 # command to start our application
-CMD [ "node" , "index.js"]
+CMD [ "npm" , "run" , "dev" ]   

@@ -39,17 +39,20 @@ const CartPage = () => {
 
     const handlePayment = async () => {
 
+        
         try {
             setIsPaymentLoading(true)
+
             const payment_data = {
-                id: Math.random(),
                 payment_method: "card",
-                payment_amount: subtotal?.toFixed(2)
+                payment_amount: subtotal?.toFixed(2),
+                cart_items: cartItems
             }
+
             const response = await makePayment(payment_data)
-            console.log(response)
+            
             if(response.code ==201){
-                navigate('/order', { state: { data: response, cartItems, subtotal } })
+                navigate('/OrderSuccess', { state: { data: response, cartItems, subtotal } })
             }
         } catch (error) {
             console.log(error)

@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # Set working dir
-WORKDIR /api-gateway-server
+WORKDIR /api-gateway
 
 # Copy package*.json file first
 COPY ./package.json  ./
@@ -15,4 +15,4 @@ RUN npm install
 EXPOSE 4000
 
 # command to start our application
-CMD [ "node" , "index.js"]
+CMD [ "npm" , "run" , "dev" ]   

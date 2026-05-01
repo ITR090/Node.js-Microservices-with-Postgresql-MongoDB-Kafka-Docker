@@ -20,7 +20,7 @@ require('./db')
 app.use(cors())
 app.use(express.json());
 
-//app.use("/api/order", require("./routes/order.routes"));
+app.use("/api/orders", require("./routes/order.routes"));
 receiveMessage()
 
 app.listen(process.env.PORT, () =>

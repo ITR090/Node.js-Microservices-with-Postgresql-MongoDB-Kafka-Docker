@@ -2,16 +2,16 @@ const mongoose = require('mongoose')
 
 const PaymentSchema = new mongoose.Schema({
 
-    id:{
-        type: Number,
-        required: true
-    }, 
     payment_method:{
         type: String,
         require:true,
     },
     payment_amount:{
         type: mongoose.Schema.Types.Double,
+        required: true
+    },
+    cart_items: {
+        type: Array,
         required: true
     }
 },{

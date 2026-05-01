@@ -3,7 +3,6 @@ dotenv.config();
 const express = require("express");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const cors = require('cors')
-// const createTopics = require('../../kafka-service/src/admin.js')
 
 
 const PORT = process.env.PORT
@@ -45,18 +44,13 @@ app.use("/api/payment",
   })
 );
 
+app.use("/api/orders",
+  createProxyMiddleware({
+    target:`http://${process.env.order_service}`,
+    changeOrigin: true
+  })
+);
+
 app.listen(PORT, () =>
   console.log(`API Gateway running on ${PORT}`)
 );
-
-// const startServer = async () => {
-//   try {
-//     app.listen(PORT, () =>      console.log(`API Gateway running on ${PORT}`)
-//     );
-//     await createTopics();
-//   } catch (error) {
-//     console.error("Error starting server", error);
-//   }   
-// };
-
-// startServer();
