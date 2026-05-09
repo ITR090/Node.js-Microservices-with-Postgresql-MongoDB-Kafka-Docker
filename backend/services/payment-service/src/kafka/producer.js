@@ -16,6 +16,8 @@ const sendMessage = async (topic, message) => {
             messages: [ { value: JSON.stringify(message) } ],
         });
         console.log(`Message sent to topic ${topic}`);
+        console.log('payment successful message sent to Kafka');
+        console.log(message);
     } catch (error) {
         console.error(`Error sending message to topic ${topic}`, error);
     }   

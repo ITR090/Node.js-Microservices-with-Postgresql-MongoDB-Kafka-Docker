@@ -45,7 +45,7 @@ const CartPage = () => {
 
             const payment_data = {
                 payment_method: "card",
-                payment_amount: subtotal?.toFixed(2),
+                total: subtotal?.toFixed(2),
                 cart_items: cartItems
             }
 

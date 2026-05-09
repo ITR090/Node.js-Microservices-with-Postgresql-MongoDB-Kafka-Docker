@@ -5,6 +5,7 @@ exports.getAll = async (req, res) => {
 
     try {
        const response= await client.query('SELECT * FROM restaurants')
+       console.log('getAll');
        res.status(200).json(response.rows);
     } catch (error) {
         console.error('Error fetching restaurants', error.stack);

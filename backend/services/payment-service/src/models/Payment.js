@@ -6,7 +6,7 @@ const PaymentSchema = new mongoose.Schema({
         type: String,
         require:true,
     },
-    payment_amount:{
+    total:{
         type: mongoose.Schema.Types.Double,
         required: true
     },

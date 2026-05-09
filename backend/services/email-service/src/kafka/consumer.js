@@ -1,26 +1,26 @@
 const { Kafka } = require('kafkajs')
-// const Order = require('../models/Order.js')
-const {createOrder} = require('../controllers/order.controller')
+const {sendEmail} = require('../controllers/email.controllers')
 
-
- const kafka = new Kafka({
-        clientId: "order-service",
+const kafka = new Kafka({
+        clientId: "email-service",
         brokers: ["kafka:9092"],
-    });
+});
 
-const consumer = kafka.consumer({ groupId: 'order-service' })
+const consumer = kafka.consumer({ groupId: 'email-service' })
 
 const receiveMessage = async () => {
 
 try {
     
     await consumer.connect()
-    await consumer.subscribe({ topic: 'payment-successful', fromBeginning: true })
+    await consumer.subscribe({ topic: 'email-successful', fromBeginning: true })
     await consumer.run({
         eachMessage: async ({ topic, partition, message }) => {
          try {
-            const messageValue = JSON.parse(message.value.toString())           
-            await createOrder(messageValue)
+            const messageValue = JSON.parse(message.value.toString())
+            
+            await sendEmail(messageValue)
+            
          } catch (error) {
             console.error("Error creating order:", error);
          }

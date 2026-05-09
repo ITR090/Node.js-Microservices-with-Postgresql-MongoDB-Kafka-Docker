@@ -1,16 +1,19 @@
 const Order = require('../models/Order');
+const {sendMessage} = require('../kafka/producer')
 
+exports.createOrder = async (payment_details) => {
 
-exports.createOrder = async (order) => {
     try {
-        const response = await Order.create({
-            payment_id: order.id,
-            payment_details: order,
-            // orderStatus: "order created",
+        const order = new Order({
+            payment_details,
         })
-        // send an email to kafka topic to send email to user about order creation
-        
-        console.log("Order created successfully:", response);
+        const response = await order.save()
+
+        if(response){
+            console.log('Order created successfully:', response);
+            await sendMessage('email-successful', response)
+            console.log('Email successful message sent to Kafka');
+        }
     } catch (error) {
          console.error("Error creating order:", error);
          throw new Error("Failed to create order");
@@ -21,7 +24,6 @@ exports.getOrders = async (req, res) => {
 
     try {
         const orders = await Order.find();
-        console.log("Orders fetched successfully:", orders);
         res.status(200).json(orders);
     } catch (error) {
         console.error("Error fetching orders:", error);
